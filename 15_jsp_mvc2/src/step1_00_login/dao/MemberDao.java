@@ -171,8 +171,46 @@ public class MemberDao {
 	}
 	
 	 
+	// 5. 회원탈퇴 DAO
+	public void deleteMember(String id) {
+		try {
+			
+			conn = getConnection();
+			pstmt = conn.prepareStatement("DELETE FROM MEMBER WHERE ID = ?");
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try {pstmt.close();} catch (SQLException e) {}
+			if (conn != null)  try {conn.close();} catch (SQLException e) {}
+		}
+	}
 	
-	
+	// 6. 회원정보수정 DAO
+	public void updateMember(MemberDto memberDto) {
+		try {
+			
+			conn = getConnection();
+			pstmt = conn.prepareStatement("UPDATE MEMBER SET PW = ? , NAME = ? , TEL = ? , EMAIL = ? , FIELD = ? , SKILL = ? , MAJOR = ? WHERE ID = ?");
+			pstmt.setString(1, memberDto.getPw());
+			pstmt.setString(2, memberDto.getName());
+			pstmt.setString(3, memberDto.getTel());
+			pstmt.setString(4, memberDto.getEmail());
+			pstmt.setString(5, memberDto.getField());
+			pstmt.setString(6, memberDto.getSkill());
+			pstmt.setString(7, memberDto.getMajor());
+			pstmt.setString(8, memberDto.getId());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try {pstmt.close();} catch (SQLException e) {}
+			if (conn != null)  try {conn.close();} catch (SQLException e) {}
+		}
+	}
 	
 	
 	
