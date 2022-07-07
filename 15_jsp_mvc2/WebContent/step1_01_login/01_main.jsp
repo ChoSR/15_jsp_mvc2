@@ -25,7 +25,7 @@
 			username="root"
 			password="1234" 
 			type="javax.sql.DataSource"
-			url="jdbc:mysql://호스트명:포트번호/데이터베이스명?serverTimezone=UTC"
+			url="jdbc:mysql://root:3306/데이터베이스명?serverTimezone=UTC"
 		/> 
  
  
